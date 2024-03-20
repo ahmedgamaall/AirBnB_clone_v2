@@ -1,12 +1,12 @@
 -- prepares a MySQL server for the project
-CREATE DATABASE IF NOT EXISTS hbnb_dev_db;
+CREATE DATABASE IF NOT EXISTS hbtn_0c_0;
 
-CREATE USER IF NOT EXISTS 'hbnb_dev'@'localhost' IDENTIFIED BY 'hbnb_dev_pwd';
+CREATE USER IF NOT EXISTS 'hbtn_d'@'localhost' IDENTIFIED BY 'hbnb_dev_pwd';
 
-USE hbnb_dev_db;
+USE hbtn_0c_0;
 GRANT ALL PRIVILEGES 
-ON `hbnb_dev_db`.*
-TO 'hbnb_dev'@'localhost';
+ON `hbtn_0c_0`.*
+TO 'hbtn_d'@'localhost';
 GRANT SELECT 
 ON `performance_schema`.*
-TO 'hbnb_dev'@'localhost';
+TO 'hbtn_d'@'localhost';
