@@ -32,7 +32,7 @@ class TestConstructor(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("help EOF")
             self.assertEqual("EOF command to exit the program.",
-                             f.getvalue()[:-1])
+                        f.getvalue()[:-1])
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("help create")
             self.assertEqual(
@@ -165,9 +165,9 @@ class TestConstructor(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd('create City name="t"e_st"')
             self.assertTrue("City."+f.getvalue()
-                                [:-1] in storage.all().keys())
+                            [:-1] in storage.all().keys())
             self.assertIsInstance(storage.all().get(
-                    f"City."+f.getvalue()[:-1]), City)
+                f"City."+f.getvalue()[:-1]), City)
             self.assertIn("'name': 't\"e_st'")
 
     def test_docstrings(self):
@@ -184,6 +184,7 @@ class TestConstructor(unittest.TestCase):
         self.assertIsNotNone(HBNBCommand.count.__doc__)
         self.assertIsNotNone(HBNBCommand.strip_clean.__doc__)
         self.assertIsNotNone(HBNBCommand.default.__doc__)
+        self.assertIsNotNone(HBNBCommand.__doc__)
 
     def test_show(self):
         """test method show"""
