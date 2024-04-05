@@ -7,6 +7,7 @@ using the function do_pack
 from fabric.api import local, task
 from datetime import datetime
 
+
 @task
 def do_pack():
     """web_static must be added to the final archive"""
