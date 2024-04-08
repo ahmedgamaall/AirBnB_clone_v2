@@ -1,8 +1,14 @@
-[200~# Prepare your web servers
+# Prepare your web servers
 
 file{"/data/web_static/releases/test/index.html":
 ensure  => "file",
-content => "hello world",
+content => "<html>
+  <head>
+  </head>
+  <body>
+    Holberton School
+  </body>
+</html>",
 owner   => "ubuntu",
 group   => "ubuntu",
 require => File["/data/web_static/releases/test"],}
@@ -49,7 +55,6 @@ file{"/etc/nginx/sites-available/default":
   content => "server {
     listen 80;
     listen [::]:80 default_server;
-    server_name 52.3.243.117;
     location /hbnb_static {
         alias /data/web_static/current/;
     }
