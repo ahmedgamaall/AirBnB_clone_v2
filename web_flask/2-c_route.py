@@ -10,6 +10,7 @@ def hello_route():
     """Route /"""
     return "Hello HBNB!"
 
+
 @app.route("/hbnb", strict_slashes=False)
 def hbnb():
     """Route /hbnb"""
@@ -20,6 +21,7 @@ def hbnb():
 def c_text(text):
     """followed by the value of the text variable"""
     return "C {}".format(text.replace("_", " "))
+
 
 if __name__ == '__main__':
     """web application that listening on 0.0.0.0, port 5000"""
