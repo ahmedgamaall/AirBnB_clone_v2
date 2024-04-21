@@ -8,25 +8,30 @@ from models.state import State
 app = Flask(__name__)
 
 
-@app.route('/states/<id>', strict_slashes=False)
-@app.route('/states', strict_slashes=False)
-def states_and_state(id=None):
+@app.route('/states')
+def states():
     """display a HTML page"""
-    sorted_list = sorted(storage.all(
-        State).values(), key=lambda x: x.name)
-    if id is None:
-        return render_template("9-states.html", sorted_states=sorted_list,
-			       hasStates=True)
-    else:
-        for sl in sorted_list:
-            if sl.id == id:
-                sl.cities.sort(key=lambda x: x.name)
-                return render_template("9-states.html", state=sl)
-    return render_template("9-states.html")
+    sorted_states = storage.all(State)
+    return render_template("9-states.html",
+                           sorted_states=sorted_states)
+
+
+@app.route('/states/<id>')
+def states_id(id):
+    """display a HTML page"""
+    stt = None
+    not_found = True
+    for state in storage.all(State).values():
+        if state.id == id:
+            stt = state
+            not_found = False
+            break
+    return render_template("9-states.html", id=id,
+                           state=stt, notfound=not_found)
 
 
 @app.teardown_appcontext
-def terminate(exc):
+def terminate(excep):
     """close storage"""
     storage.close()
 

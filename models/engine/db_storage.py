@@ -7,7 +7,7 @@ from models.amenity import Amenity
 from models.place import Place
 from models.state import State
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import scoped_session, sessionmaker
 from models.city import City
 from models.user import User
 
@@ -67,3 +67,7 @@ class DBStorage:
         Base.metadata.create_all(self.__eng)
         Session = sessionmaker(bind=self.__eng, expire_on_commit=False)
         self.__sess = Session()
+
+    def close(self):
+        """close method"""
+        self.__session.close()

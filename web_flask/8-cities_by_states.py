@@ -4,6 +4,7 @@
 from flask import Flask, render_template
 from models import storage
 from models.state import State
+from models.city import City
 
 app = Flask(__name__)
 
@@ -12,14 +13,14 @@ app = Flask(__name__)
 def cities_by_states():
     """display a HTML page"""
     sorted_list = sorted(storage.all(
-        State).values(), key=lambda x: x.name)
+        State).values(), key=lambda st: st.name)
     for sl in sortedlist:
-        sl.cities.sort(key=lambda x: x.name)
+        sl.cities.sort(key=lambda ct: ct.name)
     return render_template("8-cities_by_states.html", sorted_states=sorted_list)
 
 
 @app.teardown_appcontext
-def terminate(exc):
+def terminate(excep):
     """close storage"""
     storage.close()
 
